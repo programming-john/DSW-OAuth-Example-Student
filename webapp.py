@@ -80,7 +80,7 @@ def renderPage1():
 
 @app.route('/page2')
 def renderPage2():
-    return render_template('page2.html')
+    return render_template('page2.html', goose = session['user_data']['public_repos'])
 
 #the tokengetter is automatically called to check who is logged in
 @github.tokengetter
