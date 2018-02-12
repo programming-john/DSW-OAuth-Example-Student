@@ -12,7 +12,7 @@ import os
 
 app = Flask(__name__)
 
-app.debug = True #Change this to False for production
+app.debug = False #Change this to False for production
 
 app.secret_key = os.environ['SECRET_KEY'] #USE SECRET_KEY to sign the cookies 
 oauth = OAuth(app)
@@ -51,8 +51,8 @@ def logout():
     session.clear()
     return render_template('message.html', message='You were logged out')
 
-@app.route() #the route should match the callback URL registered with the OAuth provider
-def authorized('/login/authorized'):
+@app.route('/login/authorized') #the route should match the callback URL registered with the OAuth provider
+def authorized():
     resp = github.authorized_response()
     if resp is None:
         session.clear()
