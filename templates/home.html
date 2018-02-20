@@ -1,15 +1,23 @@
 {% extends "layout.html" %}
 
-{% block title %}Home{% endblock %}
+{% block title %}Forum{% endblock %}
 
 {% block content %}
-  <h1>Home</h1>
-  <ul>
-    <li><a href="/page1">That thing we do</a></li>
-    <li><a href="/page2">The other thing</a></li>
-  </ul>
+  <h1>Forum</h1>
+  <p>Description.</p>
+  
+  {% if logged_in %}
+  <form action='/posted' method="post">
+    <textarea name="message" style="width:100%; height:100px;"></textarea>
+    <br>
+    <input type="submit" value="Post">
+  </form>
+  {%else%}
+  <p>You must be logged in to perform this action.</p>
+  {% endif %}
+  
+  {{ past_posts }}
+<pre>{{ rar }}</pre>
 
-<p>This is a sample application to demonstrate authenticating against github oauth,
-using Flask, on Heroku.</p>
 
 {% endblock %}
